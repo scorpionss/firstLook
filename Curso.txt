@@ -1,0 +1,167 @@
+git: Sistema de control de versiónes, ideado por Linus torlvals para tener una plataforma distribuida
+	- Velocidad
+	- Diseño sencillo
+	- Gran soporte para desarrollo no lineal (miles de ramas paralelas)
+	- Completamente distribuido
+	- Capaz de manejar grandes proyectos (como el kernel de Linux) eficientemente (velocidad y tamaño de los datos)
+
+gitHub: Plataforma cloud para compartir repositorios gestionados con git.
+
+
+==================
+    C U R S O
+==================
+
+git init
+git status
+git -add -A
+git log
+get config --globla 
+get config --list
+
+** A L I A S: Para tener una mejor funcionalidad los alias se crean con bats que aceptan parametros
+touch 
+	copy /b NUL %1
+	.>%1
+
+tx	
+	copy /b NUL "%1.txt"
+th	
+	copy /b NUL "%1.html"
+tp	
+	copy /b NUL "%1.php"
+tc	
+	copy /b NUL "%1.css"
+	
+cp
+	copy %1 "%2"
+
+gi
+git init
+IF [%1] == [] (GOTO Init)
+GOTO wName
+
+:Init
+gac Init
+
+:wName
+gac %1
+
+
+gl	git log	params	git config --global alias.loghead "log  --oneline --graph --all"
+gl	git log	params	git config --global alias.superlog "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+gl	git log	params	git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all
+
+glas	git log 
+
+gac	
+	git add -A
+	git commit -m "%1"
+	
+gac	
+	git commit -am "%1" --amend
+	
+gcc	git checkout %1	-- fileName.ext para eliminar del status
+gcb	git checkout -b %1	Crea nueva rama "nombrada"
+gma	git checkout master
+
+gs	git status 
+
+
+gv	version	--version
+gs	status	status
+gc	commit	commit
+
+ga	add	-A
+gaa	add	
+
+gcc	checkout	%ar
+
+grh
+grm
+grs
+
+git config --global alias.superlog "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+
+** R E S E T
+git
+
+git reset --hard [commit-id]
+Para borrar o reestablecer commits.
+Iguala el repositorio con el Staging Area y Working Directory.
+
+git reset --mixed [commit-id]
+Nos sirve para unificar varios commits en uno, ya que nos permite borrar o reestablecer commits.
+Iguala el repositorio con el Staging Area pero no con el Working Directory, por ende se mantiene los últimos cambios y estos no están preparados para el commit.
+
+git reset --soft [commit-id]
+Nos sirve para unificar varios commits en uno, ya que nos permite borrar o reestablecer commits.
+Iguala el repositorio con el Staging Area pero no con el Working Directory, por ende se mantiene los últimos cambios y estos ya están preparados para el commit.
+
+Se pueden usar los primeros 7 digitos del hash en lugar de toda la cadena
+git reset --hard 692508b5a64ebede8b816b8a363fb80b37790e4d
+es igual a
+git reset --hard 692508b
+
+git reset hard (id_commit) es el comando para borrar commits y tambien para restaura el ultimo commit borrado.
+
+git reset mix se borra es staging area y el repositorio....no se mete con el working area(sublime text o cualquier otro editor).
+
+git reset soft se borra el commit y no el staging area y el working area....los archivos quedan cargados para hacer un nuevo commit en el staging area.
+
+git checkout id_commit se utiliza para regresar en el tiempo a un punto determinado del proyecto.
+
+
+** C O M M I T
+Constituido por 3 partes: Parnet, Author, Date, Commit ID (SHA)
+
+** RAMAS BRANCH
+¿Qué son las ramas? R. Son líneas alternas en la historia de nuestro proyecto.
+¿Para qué sirven las ramas? R. Nos permiten generar ideas, ejecutar features como responsive design por ejemplo, y bugfixes.
+¿Qué es el head? R. El head es un puntero que nos indica en que punto de nuestro repositorio nos encontramos. El head se va actualizando con cada commit que hacemos. Si el head apunta al commit A, y luego hacemos otro commit, el head ahora va a apuntar al commit B, y así sucesivamente.
+¿Qué es el master? R. El master es la rama por defecto.
+¿Cómo crear una nueva rama? R. Con el comando git checkout -b “[experimental]”.
+Al crear una nueva rama, la flecha(head) se mantendrá en el último commit hasta que creemos un nuevo commit con git commit -am “commit nuevo” (La fusión entre git commit add y git commit -m “mensaje”). Ahora head apunta al nuevo commit de la rama experimantal.
+¿Cómo regresar a la rama principal(master)? R. Con el comando git checkout master
+¿Cómo fusionar la rama master con la rama experimental?R. git merge experimenta
+
+** R E B A S E: Fusiona ramas al master 
+Despues de hacer los commits y ramas correspondientes
+el proceo comienza yendo a la rama que se quiere empujar al master
+
+git checkout "ramaRebase"
+git rebase master
+
+= Despues de esto se "bajan-alinea" la rama al master pero el master 
+queda en el último, este no se translada al ultimo del commit
+
+git checkout master
+git merge ramaRebase
+
+= De esta forma se translada el master al ultimo commit de ramaRebase
+
+http://five.agency/git-merge-and-rebase-the-simple-explanation/
+
+
+** EJERCICIOS
+https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
+
+git commit -am "Nombre del commit"             (Crea un commit agregando todos los archivos sin pasar por el staging area)
+    git commit -m "Nombre  del commit" --amend     (Sustituye el ultimo commit)
+    
+    git log --oneline     (Te muestra el id commit y el titulo del commit)
+    git log --decorate     (Te muestra donde se encuentra el head point en el log)
+    git log --stat        (Explica el numero de lineas que se cambiaron brevemente)
+    git log -p            (Explica el numero de lineas que se cambiaron y te muestra que se cambio en el contenido)
+    git shortlog        (Indica que commits a realizado un usuario, mostrando el usuario y el titulo de sus commits)
+    git log --graph --oneline --decorate 
+    git log pretty=format:"%cn hizo un commit %h el dia %cd" (Muestar mensajes perzonalizados de los commits)
+    git log -3            (Limitamos el numero de commits)
+    git log --after="2016-1-2"
+    git log --after="today"
+    git log --after="2016-1-2" --before="today" (Commits para localizar por fechas)
+    git log --author="Santiago Iván" (commits por autor que cumplan con las letras)
+    git log --grep="FOOTER" (Busca los commits que cumplan tal cual esta escrito entre las comillas)
+    git log --grep="FOOTER" -i (Busca los commits que cumplan sin importar mayusculas o minusculas)
+    git log -- index.html (Busca los commits en un archivo en especifico)
+    git log -S"Por contenido" (Buscar los commits con el contenido dentro del archivo)
