@@ -188,3 +188,28 @@ git push -u origin master
 
 modificación gac en sintaxis comillas :D
 
+git fetch origin
+git merge origin/master
+
+Video 19 habla de los workflows (flujos de trabajo) donde
+describe como colaborar con proyecto donde no somos los propietarios
+
+1) En primer lugar se tiene que hacer un "fork" del proyecto Original a nuestra cuenta gitHub
+Una vez con "nuestro" fork...
+2) Se hacen dos "conecciónes" remotas en git (local) la primera es nuestro SSH origin (el fork)
+y la segunda es al proyecto original (https) para verificar las conexiones "git remote -v"
+
+se hace un "git fetch orign" y luego un "git merge origin/master"
+
+
+git remote add origin (repositorio forked)
+git remote add upstream (repositorio original)
+git fetch upstream
+git merge origin/upstream
+git fetch origin
+git merge origin/master
+//muchos git commit
+git fetch upstream
+git merge origin/upstream
+git push origin master
+
