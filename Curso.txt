@@ -180,8 +180,11 @@ git remote add origin https://github.com/scorpionss/firstLook.git
 git push -u origin master
 
 git@github.com:scorpionss/firstLook.git
+gra
 git remote add git@github.com:scorpionss/firstLook.git
+
+gp
 git push -u origin master
 
-modificación gac en sintaxis comillas
-ok
+modificación gac en sintaxis comillas :D
+
