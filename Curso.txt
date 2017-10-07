@@ -169,6 +169,8 @@ REM git log -S"Por contenido" (Buscar los commits con el contenido dentro del ar
 
 ** HEAD 
 
+ssh-keygen -t rsa -b 4096 -C "correo@server.mx"
+
 echo "# firstLook" >> README.md
 git init
 git add README.md
@@ -180,6 +182,7 @@ git remote add origin https://github.com/scorpionss/firstLook.git
 git push -u origin master
 
 git@github.com:scorpionss/firstLook.git
+
 gra
 git remote add git@github.com:scorpionss/firstLook.git
 
@@ -191,7 +194,7 @@ modificación gac en sintaxis comillas :D
 git fetch origin
 git merge origin/master
 
-Video 19 habla de los workflows (flujos de trabajo) donde
+Video 20 habla de los workflows (flujos de trabajo) donde
 describe como colaborar con proyecto donde no somos los propietarios
 
 1) En primer lugar se tiene que hacer un "fork" del proyecto Original a nuestra cuenta gitHub
