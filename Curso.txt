@@ -19,7 +19,7 @@ git log
 get config --globla 
 get config --list
 
-** A L I A S: Para tener una mejor funcionalidad los alias se crean con bats que aceptan parametros
+** ALIAS: Para tener una mejor funcionalidad los alias se crean con bats que aceptan parametros
 touch 
 	copy /b NUL %1
 	.>%1
@@ -83,7 +83,7 @@ grs
 
 git config --global alias.superlog "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
-** R E S E T
+** RESET
 git
 
 git reset --hard [commit-id]
@@ -112,7 +112,7 @@ git reset soft se borra el commit y no el staging area y el working area....los 
 git checkout id_commit se utiliza para regresar en el tiempo a un punto determinado del proyecto.
 
 
-** C O M M I T
+** COMMIT
 Constituido por 3 partes: Parnet, Author, Date, Commit ID (SHA)
 
 ** RAMAS BRANCH
@@ -125,7 +125,7 @@ Al crear una nueva rama, la flecha(head) se mantendrá en el último commit hasta 
 ¿Cómo regresar a la rama principal(master)? R. Con el comando git checkout master
 ¿Cómo fusionar la rama master con la rama experimental?R. git merge experimenta
 
-** R E B A S E: Fusiona ramas al master 
+** REBASE Fusiona ramas al master 
 Despues de hacer los commits y ramas correspondientes
 el proceo comienza yendo a la rama que se quiere empujar al master
 
@@ -147,21 +147,34 @@ http://five.agency/git-merge-and-rebase-the-simple-explanation/
 https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
 
 git commit -am "Nombre del commit"             (Crea un commit agregando todos los archivos sin pasar por el staging area)
-    git commit -m "Nombre  del commit" --amend     (Sustituye el ultimo commit)
+git commit -am "Nombre  del commit" --amend     (Agrega y Sustituye el ultimo commit)
+git commit -m "Nombre  del commit" --amend     (Sustituye el ultimo commit)
     
-    git log --oneline     (Te muestra el id commit y el titulo del commit)
-    git log --decorate     (Te muestra donde se encuentra el head point en el log)
-    git log --stat        (Explica el numero de lineas que se cambiaron brevemente)
-    git log -p            (Explica el numero de lineas que se cambiaron y te muestra que se cambio en el contenido)
-    git shortlog        (Indica que commits a realizado un usuario, mostrando el usuario y el titulo de sus commits)
-    git log --graph --oneline --decorate 
-    git log pretty=format:"%cn hizo un commit %h el dia %cd" (Muestar mensajes perzonalizados de los commits)
-    git log -3            (Limitamos el numero de commits)
-    git log --after="2016-1-2"
-    git log --after="today"
-    git log --after="2016-1-2" --before="today" (Commits para localizar por fechas)
-    git log --author="Santiago Iván" (commits por autor que cumplan con las letras)
-    git log --grep="FOOTER" (Busca los commits que cumplan tal cual esta escrito entre las comillas)
-    git log --grep="FOOTER" -i (Busca los commits que cumplan sin importar mayusculas o minusculas)
-    git log -- index.html (Busca los commits en un archivo en especifico)
-    git log -S"Por contenido" (Buscar los commits con el contenido dentro del archivo)
+REM git log --oneline     (Te muestra el id commit y el titulo del commit)
+REM git log --decorate     (Te muestra donde se encuentra el head point en el log)
+REM git log --stat        (Explica el numero de lineas que se cambiaron brevemente)
+REM git log -p            (Explica el numero de lineas que se cambiaron y te muestra que se cambio en el contenido)
+REM git shortlog        (Indica que commits a realizado un usuario, mostrando el usuario y el titulo de sus commits)
+REM git log --graph --oneline --decorate 
+REM git log pretty=format:"%cn hizo un commit %h el dia %cd" (Muestar mensajes perzonalizados de los commits)
+REM git log -3            (Limitamos el numero de commits)
+REM git log --after="2016-1-2"
+REM git log --after="today"
+REM git log --after="2016-1-2" --before="today" (Commits para localizar por fechas)
+REM git log --author="Santiago Iván" (commits por autor que cumplan con las letras)
+REM git log --grep="FOOTER" (Busca los commits que cumplan tal cual esta escrito entre las comillas)
+REM git log --grep="FOOTER" -i (Busca los commits que cumplan sin importar mayusculas o minusculas)
+REM git log -- index.html (Busca los commits en un archivo en especifico)
+REM git log -S"Por contenido" (Buscar los commits con el contenido dentro del archivo)
+
+** HEAD 
+
+echo "# firstLook" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/scorpionss/firstLook.git
+git push -u origin master
+
+git remote add origin https://github.com/scorpionss/firstLook.git
+git push -u origin master
