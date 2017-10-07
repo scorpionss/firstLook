@@ -178,3 +178,7 @@ git push -u origin master
 
 git remote add origin https://github.com/scorpionss/firstLook.git
 git push -u origin master
+
+git@github.com:scorpionss/firstLook.git
+git remote add git@github.com:scorpionss/firstLook.git
+git push -u origin master
