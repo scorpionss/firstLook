@@ -191,8 +191,11 @@ git push -u origin master
 
 modificación gac en sintaxis comillas :D
 
+gfo
 git fetch origin
-git merge origin/master
+
+gmom
+git merge origin/master 
 
 Video 20 habla de los workflows (flujos de trabajo) donde
 describe como colaborar con proyecto donde no somos los propietarios
